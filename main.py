@@ -1,17 +1,18 @@
 import pandas as pd
 from graficoGeral import graficoGeral, graficoDiferencaGeral
 from graficoBrasil import graficoBrasil
-
+from featureSelection import featureSelection
+from regression import regression
 # le arquivos csv em dataframes
 temperaturas_globais = pd.read_csv('data/GlobalTemperatures.csv')
 temperaturas_globais_paises = pd.read_csv('data/GlobalLandTemperaturesByCountry.csv')
-temperaturas_globais_cidades = pd.read_csv('data/GlobalLandTemperaturesByCity.csv')
+#temperaturas_globais_cidades = pd.read_csv('data/GlobalLandTemperaturesByCity.csv')
 
 # Converte data para formato datetime
 temperaturas_globais['dt'] = pd.to_datetime(temperaturas_globais['dt'])
 temperaturas_globais_paises['dt'] = pd.to_datetime(temperaturas_globais_paises['dt'])
-temperaturas_globais_cidades['dt'] = pd.to_datetime(temperaturas_globais_cidades['dt'])
-
+#temperaturas_globais_cidades['dt'] = pd.to_datetime(temperaturas_globais_cidades['dt'])
+"""
 # adiciona coluna de ano
 temperaturas_globais['year'] = temperaturas_globais['dt'].dt.year
 temperaturas_globais_paises['year'] = temperaturas_globais_paises['dt'].dt.year
@@ -38,3 +39,7 @@ figBrasil.show()
 # Grafico com top paises com maior diferenca entre temperatura média ao longo dos anos e temperatura máxima (que tiveram maior aumento)
 figDiferenca = graficoDiferencaGeral(temperaturas_globais_cidades)
 figDiferenca.show()
+"""
+# Verifica as features mais relacionadas ao target
+featureSelection(temperaturas_globais)
+regression(temperaturas_globais)
