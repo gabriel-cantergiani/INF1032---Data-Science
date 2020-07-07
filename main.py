@@ -41,5 +41,5 @@ figDiferenca = graficoDiferencaGeral(temperaturas_globais_cidades)
 figDiferenca.show()
 """
 # Verifica as features mais relacionadas ao target
-featureSelection(temperaturas_globais)
+#featureSelection(temperaturas_globais)
 regression(temperaturas_globais)
