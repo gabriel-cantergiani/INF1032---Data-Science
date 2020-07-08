@@ -2,7 +2,7 @@ import pandas as pd
 from graficoGeral import graficoGeral, graficoDiferencaGeral
 from graficoBrasil import graficoBrasil
 from featureSelection import featureSelection
-from regression import regression
+from regression import regression,regressionMultipleParameters
 # le arquivos csv em dataframes
 temperaturas_globais = pd.read_csv('data/GlobalTemperatures.csv')
 temperaturas_globais_paises = pd.read_csv('data/GlobalLandTemperaturesByCountry.csv')
@@ -43,3 +43,4 @@ figDiferenca.show()
 # Verifica as features mais relacionadas ao target
 #featureSelection(temperaturas_globais)
 regression(temperaturas_globais)
+regressionMultipleParameters(temperaturas_globais)

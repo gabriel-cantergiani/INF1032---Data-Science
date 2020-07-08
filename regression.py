@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import datetime
 def regression(df):
+    print("Regressão com um parametro")
     dt1850 = x = datetime.datetime(1850, 1, 1)
     df = df[df['dt'] > dt1850]
     feature = df['LandMaxTemperature']
@@ -13,8 +14,6 @@ def regression(df):
     # Create the regressor: reg
     reg = LinearRegression()
 
-    # Create the prediction space
-    prediction_space = np.array(feature).reshape((-1, 1))
     x = np.array(feature).reshape((-1, 1))
     y = np.array(target)
 
@@ -28,12 +27,40 @@ def regression(df):
 
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=42)
 
-    print("Normal regression: ")
+    print("Fitting: ")
     # Fit the model to the data
     reg.fit(X_train,y_train)
 
     # Compute predictions over the prediction space: y_pred
     y_pred = reg.predict(X_test)
-
+    
     # Print R^2 
     print(reg.score(X_test, y_test))
+
+    print('intercept:', reg.intercept_)
+    print('slope:', reg.coef_)
+
+def regressionMultipleParameters(df):
+    print("Regressão com dois parametros")
+    dt1850 = x = datetime.datetime(1850, 1, 1)
+    df = df[df['dt'] > dt1850]
+    features = df[['LandMaxTemperature','LandMinTemperature']]
+    target = df['LandAverageTemperature']
+    features = features.dropna(how='any')  
+    target = target.dropna(how='any')  
+    # Create the regressor: reg
+    reg = LinearRegression()
+    
+    x = np.array(features)#.reshape(()
+    y = np.array(target)
+    print(x)
+    print(y)
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=42)
+
+    print("Normal regression: ")
+    # Fit the model to the data
+    reg.fit(X_train,y_train)
+    r_sq = reg.score(X_test, y_test)
+    print('coefficient of determination:', r_sq)
+    print('intercept:', reg.intercept_)
+    print('slope:', reg.coef_)
