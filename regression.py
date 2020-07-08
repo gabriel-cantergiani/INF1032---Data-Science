@@ -1,4 +1,6 @@
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split
 import numpy as np
 import datetime
 def regression(df):
@@ -15,13 +17,23 @@ def regression(df):
     prediction_space = np.array(feature).reshape((-1, 1))
     x = np.array(feature).reshape((-1, 1))
     y = np.array(target)
-    print(x)
-    print(y)
+
+    print("Cross Validation: ")
+    cvscores_3 = cross_val_score(reg, x,y,cv=3)
+    print(np.mean(cvscores_3))
+
+    # Perform 10-fold CV
+    cvscores_10 = cross_val_score(reg, x,y,cv=10)
+    print(np.mean(cvscores_10))
+
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=42)
+
+    print("Normal regression: ")
     # Fit the model to the data
-    reg.fit(x,y)
+    reg.fit(X_train,y_train)
 
     # Compute predictions over the prediction space: y_pred
-    y_pred = reg.predict(prediction_space)
+    y_pred = reg.predict(X_test)
 
     # Print R^2 
-    print(reg.score(x, y))
+    print(reg.score(X_test, y_test))
