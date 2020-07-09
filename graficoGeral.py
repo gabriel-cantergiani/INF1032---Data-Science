@@ -171,52 +171,26 @@ def graficoDiferencaGeral(temperaturas_cidades):
 
 
     # Montando grafico
-    fig = sub.make_subplots(rows=1, cols=3, subplot_titles=("Max(temps anuais) - Média(temps anuais)", "Média(temps anuais) - Min(temps anuais)", "Max(temps anuais) - Min(temps anuais)"))
-
-    fig.update_layout(title="Considerando a temperatura média anual para cada ano, os gráficos mostram a diferença entre a menor média, a maior média e a média das médias, por país")
-
-    top_20_med_max = difference_med_max_min.nlargest(20, 'diff_med_max')
+    top_20_med_max = difference_med_max_min.nlargest(5, 'diff_med_max')
+    # top_20_med_max.sort_values('diff_med_max', ascending=True)
     trace_med_max = go.Bar(
-                    x = top_20_med_max['diff_med_max'], 
-                    y = top_20_med_max['Country'], 
-                    orientation = 'h',
+                    y = top_20_med_max['diff_med_max'], 
+                    x = top_20_med_max['Country'], 
+                    orientation = 'v',
                     marker=dict(
                         color='rgb(222,184,135)', 
                         line=dict( 
                             color='rgb(188,143,143)', 
-                            width=0.6)
+                            width=0.3)
                         )
                     )
-
-    top_20_med_min = difference_med_max_min.nlargest(20, 'diff_med_min')
-    trace_med_min = go.Bar(
-                    x = top_20_med_min['diff_med_min'], 
-                    y = top_20_med_min['Country'], 
-                    orientation = 'h',
-                    marker=dict(
-                        color='rgb(222,184,135)', 
-                        line=dict( 
-                            color='rgb(188,143,143)', 
-                            width=0.6)
-                        )
-                    )
-
-    top_20_max_min = difference_med_max_min.nlargest(20, 'diff_max_min')
-    trace_max_min = go.Bar(
-                    x = top_20_max_min['diff_max_min'], 
-                    y = top_20_max_min['Country'], 
-                    orientation = 'h',
-                    marker=dict(
-                        color='rgb(222,184,135)', 
-                        line=dict( 
-                            color='rgb(188,143,143)', 
-                            width=0.6)
-                        )
-                    )
-
-
-    fig.add_trace(trace_med_max, row=1, col=1)
-    fig.add_trace(trace_med_min, row=1, col=2)
-    fig.add_trace(trace_max_min, row=1, col=3)
-
+    fig = go.Figure(
+        data=trace_med_max,
+        layout=dict(
+            xaxis=dict(title='País'),
+            yaxis=dict(title='Diferença'),
+            title="Paises com maior diferença entre temperatura média e temperatua máxima"
+        )
+    )
+    
     return fig

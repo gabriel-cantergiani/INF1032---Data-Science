@@ -17,14 +17,12 @@ def graficoBrasil(temperaturas):
     temps_brasil = temperaturas[temperaturas['Country'] == 'Brazil']
 
     # Obtendo lista com anos
-    anos = np.unique(temps_brasil['dt'].apply(lambda x: x[:4]))
 
+    anos = np.unique(temps_brasil['year'])
 
     for ano in anos:
-        medias.append(temps_brasil[temps_brasil['dt'].apply(lambda x: x[:4]) == ano]['AverageTemperature'].mean())
-        incerteza_medias.append(temps_brasil[temps_brasil['dt'].apply(lambda x: x[:4]) == ano]['AverageTemperatureUncertainty'].mean())
-
-    # MEDIAS
+        medias.append(temps_brasil[temps_brasil['year'] == ano]['AverageTemperature'].mean())
+        incerteza_medias.append(temps_brasil[temps_brasil['year'] == ano]['AverageTemperatureUncertainty'].mean())
 
     linha_media = go.Scatter(
         x = anos,
