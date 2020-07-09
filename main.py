@@ -4,7 +4,7 @@ from graficoBrasil import graficoBrasil
 from featureSelection import featureSelection
 from regression import regression,regressionMultipleParameters
 from regressionTemperatura import regressao_ano_temp_media, previsao_temp_media_futura
-
+from correlation import correlation, predictLandAndOcean
 
 pd.set_option('display.max_columns', None)
 # le arquivos csv em dataframes
@@ -52,3 +52,8 @@ regressionMultipleParameters(temperaturas_globais)
 # Regressoes para Media Anual de Temperatura Global
 modelo = regressao_ano_temp_media(temperaturas_globais)
 previsao_temp_media_futura(temperaturas_globais, modelo, 2101)
+
+# Correlação Temp Media com Temp LandAndOcean
+
+correlation(temperaturas_globais)
+predictLandAndOcean(temperaturas_globais, 5.518)

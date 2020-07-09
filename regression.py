@@ -5,7 +5,7 @@ import numpy as np
 import datetime
 def regression(df):
     print("Regressão com um parametro")
-    dt1850 = x = datetime.datetime(1850, 1, 1)
+    dt1850 = datetime.datetime(1850, 1, 1)
     df = df[df['dt'] > dt1850]
     feature = df['LandMaxTemperature']
     target = df['LandAverageTemperature']

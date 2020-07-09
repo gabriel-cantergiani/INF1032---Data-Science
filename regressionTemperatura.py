@@ -44,6 +44,9 @@ def regressao_ano_temp_media(temperaturas):
 
     Y_predict_total = regression.predict(X).tolist()
 
+    #Acresentei o score aqui
+    r_sq = regression.score(X_test, Y_test)
+    print('Score:', r_sq)
     # Linhas dos Plots de Media
 
     linha_media = go.Scatter(
