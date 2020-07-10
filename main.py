@@ -28,9 +28,6 @@ temperaturas_globais_paises = temperaturas_globais_paises[temperaturas_globais_p
 # temperaturas_globais_cidades = temperaturas_globais_cidades[temperaturas_globais_cidades['year'] >= 1825]
 
 
-
-
-
 # Remove medicoes com valores nulos
 temperaturas_globais.dropna(axis=0, inplace=True)
 # temperaturas_globais_paises.dropna(axis=0, inplace=True)

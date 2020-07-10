@@ -6,7 +6,6 @@ from sklearn.model_selection import train_test_split
 import plotly.graph_objs as go
 def correlation(df):
     plt.style.use('ggplot')
-    print("Correlacao")
     dt1850 = datetime.datetime(1850, 1, 1)
     df = df[df['dt'] > dt1850]
     feature = df['LandAverageTemperature']
@@ -15,7 +14,7 @@ def correlation(df):
     x = np.array(feature)
     y = np.array(target)
     r = np.corrcoef(x,y)
-    print(r)
+    print("Correlacao: ", r)
     plt.scatter(x, y)
     plt.show()
 

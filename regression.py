@@ -20,11 +20,11 @@ def regression(df):
 
     print("Cross Validation: ")
     cvscores_3 = cross_val_score(reg, x,y,cv=3)
-    print(np.mean(cvscores_3))
+    print("3:",np.mean(cvscores_3))
 
     # Perform 10-fold CV
     cvscores_10 = cross_val_score(reg, x,y,cv=10)
-    print(np.mean(cvscores_10))
+    print("10:",np.mean(cvscores_10))
 
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=42)
 
@@ -54,8 +54,6 @@ def regressionMultipleParameters(df):
     
     x = np.array(features)#.reshape(()
     y = np.array(target)
-    print(x)
-    print(y)
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=42)
 
     print("Cross Validation: ")
