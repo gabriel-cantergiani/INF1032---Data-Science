@@ -1,6 +1,7 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
+from sklearn import metrics
 import numpy as np
 import datetime
 def regression(df):
@@ -57,10 +58,16 @@ def regressionMultipleParameters(df):
     print(y)
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state=42)
 
+    print("Cross Validation: ")
+    cvscores_5 = cross_val_score(reg, x,y,cv=5)
+    print(np.mean(cvscores_5))
+
     print("Normal regression: ")
     # Fit the model to the data
     reg.fit(X_train,y_train)
+    y_pred = reg.predict(X_test)
     r_sq = reg.score(X_test, y_test)
     print('coefficient of determination:', r_sq)
     print('intercept:', reg.intercept_)
     print('slope:', reg.coef_)
+    print("Mean Square Error: ", metrics.mean_squared_error(y_test, y_pred))
